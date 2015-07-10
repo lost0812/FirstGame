@@ -27,9 +27,11 @@ void GameObjHero::ReleaseBullet(float time)
 
 }
 
-cocos2d::CCRect GameObjHero::Rect()
+void GameObjHero::GetRect( Rect &rect )
 {
-	return CCRect();
+	Point position = getPosition();
+	Size size = getContentSize();
+	rect = Rect( position.x-size.width, position.y-size.height, size.width, size.height );
 }
 
 void GameObjHero::OnEnter()
@@ -123,22 +125,64 @@ bool GameObjHero::init()
 
 bool GameObjHero::ContainsTouchLocation(Touch *touch)
 {
+	Point touchPoint = touch->getLocation();
+
+	Rect rect;
+	GetRect( rect );
+
+	return rect.containsPoint( touchPoint );
+
 	return true;
 }
 
 bool GameObjHero::onTouchBegan(Touch *touch, Event *event)
 {
-	return true;
+	if( ContainsTouchLocation( touch ) )
+	{
+		m_is_control = true;
+		Point touchPoint = touch->getLocation();
+		Point heroPoint = getPosition();
+		m_offset_point.x = heroPoint.x - touchPoint.x;
+		m_offset_point.y = heroPoint.y - touchPoint.y;
+		return true;
+	}
+	return false;
 }
 
 void GameObjHero::onTouchMoved(Touch *touch, Event *event)
 {
+	if( m_is_control )
+	{
+		Point touchPoint = touch->getLocation();
 
+		Point newHeroPoint;
+		newHeroPoint.x = m_offset_point.x + touchPoint.x;
+		newHeroPoint.y = m_offset_point.y + touchPoint.y;
+		
+		if( newHeroPoint.x < getPosition().x )
+		{
+			m_left_hand->setFlippedY( true );
+			m_right_hand->setFlippedY( false );
+		}
+		else 
+		{
+			m_left_hand->setFlippedY( false );
+			m_right_hand->setFlippedY( true );
+		}
+
+		setPosition( newHeroPoint );
+	}
 }
 
 void GameObjHero::onTouchEnded(Touch *touch, Event *event)
 {
+	if( m_is_control )
+	{
+		m_is_control = false;
+	}
 
+	m_left_hand->setFlippedY( false );
+	m_right_hand->setFlippedY( false );
 }
 
 void GameObjHero::touchDelegateRetain()

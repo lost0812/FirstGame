@@ -20,6 +20,10 @@
     <ClCompile Include="GameObjHero.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjEnemy.cpp" />
+    <ClCompile Include="GameHeroBullet.cpp" />
+    <ClCompile Include="GameEnemyBullet.cpp" />
+    <ClCompile Include="GameMark.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -30,6 +34,10 @@
     <ClInclude Include="GameObjHero.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjEnemy.h" />
+    <ClInclude Include="GameHeroBullet.h" />
+    <ClInclude Include="GameEnemyBullet.h" />
+    <ClInclude Include="GameMark.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

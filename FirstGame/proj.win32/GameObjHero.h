@@ -13,11 +13,11 @@ public:
 	~GameObjHero(void);
 public:
 	void ReleaseBullet( float time );
-	CCRect Rect();
+	void GetRect( Rect &rect );
 public:
+	virtual bool init( void );
 	virtual void OnEnter();
 	virtual void OnExit();
-	virtual bool init( void );
 
 public:
 	bool ContainsTouchLocation( Touch *touch );
@@ -30,9 +30,9 @@ public:
 	virtual void touchDelegateRelease();
 
 private:
-	CCSprite *m_left_hand;
-	CCSprite *m_right_hand;
-	CCPoint m_offset_point;
+	Sprite *m_left_hand;
+	Sprite *m_right_hand;
+	Point m_offset_point;
 	bool m_is_control;
 };
 

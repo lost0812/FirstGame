@@ -1,5 +1,9 @@
 #include "HelloWorldScene.h"
 #include "proj.win32/GameObjHero.h"
+#include "proj.win32/GameObjEnemy.h"
+#include "proj.win32/GameHeroBullet.h"
+#include "proj.win32/GameEnemyBullet.h"
+#include "proj.win32/GameMark.h"
 
 USING_NS_CC;
 
@@ -75,10 +79,29 @@ bool HelloWorld::init()
 
 	auto hero = GameObjHero::create();
 	
-	hero->setPosition( Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y ) );
+	hero->setPosition( Vec2( visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y ) );
 	hero->runAction( MoveBy::create( 0.5, ccp( 0, 150 ) ) );
 
 	addChild( hero, 0 );
+
+	auto enemy = GameObjEnemy::create();
+
+	enemy->setPosition( Vec2( visibleSize.width/2 + origin.x, visibleSize.height*3/4 + origin.y ) );
+	enemy->MoveStart();
+
+	addChild( enemy );
+
+	auto heroBullet = GameHeroBullet::create();
+	heroBullet->setPosition( 100, 100 );
+	addChild( heroBullet );
+
+	auto enemyBullet = GameEnemyBullet::create();
+	enemyBullet->setPosition( 200, 100 );
+	addChild( enemyBullet );
+
+	auto mark = GameMark::create();
+	mark->setPosition( origin.x + mark->getContentSize().width/2 , visibleSize.height );
+	addChild( mark );
 
     
     return true;
