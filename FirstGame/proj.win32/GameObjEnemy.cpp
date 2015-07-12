@@ -56,6 +56,15 @@ bool GameObjEnemy::init()
 	return true;
 }
 
+void GameObjEnemy::addChild(Node *child)
+{
+	Size adjust_point = getContentSize();
+	Point old_point = child->getPosition();
+
+	child->setPosition( old_point.x + adjust_point.width/2, old_point.y + adjust_point.height/2 );
+	Node::addChild( child );
+}
+
 void GameObjEnemy::ReleaseBullet(float time)
 {
 
@@ -89,16 +98,19 @@ void GameObjEnemy::Die()
 			NULL ));
 }
 
+void GameObjEnemy::SetDie()
+{
+	m_is_life = false;
+	Die();
+}
+
 void GameObjEnemy::ReStart()
 {
 	m_is_life = true;
 
 	m_body->setVisible( true );
 	m_boom->setVisible( false );
-
-	Size size = getParent()->getContentSize();
-	setPosition( Vec2( size.width/2, size.height*3/4 )) ;
-
+	
 	MoveStart();
 }
 
@@ -129,9 +141,12 @@ void GameObjEnemy::MoveStart()
 	{
 	case 0:
 		runAction( 
-			CCSequence::create(  
-				CCMoveBy::create( 6, Vec2( 200, 0 ) ),
-				CCCallFunc::create( this, callfunc_selector( GameObjEnemy::ReStart ) ), NULL ));
+			RepeatForever::create(
+				CCSequence::create(  
+					CCMoveBy::create( 6, Vec2( 200, 0 ) ),
+					CCMoveBy::create( 6, Vec2( -400, 0 ) ),
+					CCMoveBy::create( 6, Vec2( 200, 0 ) ),
+					NULL )));
 		break;
 	//case 1:
 	//	runAction( CCSequence::create(  bezierTo1,
@@ -144,4 +159,22 @@ void GameObjEnemy::MoveStart()
 	}
 
 	schedule( schedule_selector( GameObjEnemy::ReleaseBullet ), 1.2f );
+}
+
+bool GameObjEnemy::IsLife()
+{
+	return m_is_life;
+}
+
+void GameObjEnemy::SetLife(bool life)
+{
+	m_is_life = life;
+}
+
+void GameObjEnemy::GetRect(Rect &rect)
+{
+	Point position = getPosition();
+	Point anchor = getAnchorPoint();
+	Size size = getContentSize();
+	rect = Rect( position.x-size.width*anchor.x, position.y-size.height*anchor.y, size.width, size.height );
 }

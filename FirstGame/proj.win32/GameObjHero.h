@@ -16,8 +16,7 @@ public:
 	void GetRect( Rect &rect );
 public:
 	virtual bool init( void );
-	virtual void OnEnter();
-	virtual void OnExit();
+	virtual void addChild(Node *child);
 
 public:
 	bool ContainsTouchLocation( Touch *touch );
@@ -26,8 +25,6 @@ public:
 	virtual void onTouchMoved( Touch *touch, Event *event );
 	virtual void onTouchEnded( Touch *touch, Event *event );
 
-	virtual void touchDelegateRetain();
-	virtual void touchDelegateRelease();
 
 private:
 	Sprite *m_left_hand;

@@ -30,19 +30,9 @@ void GameObjHero::ReleaseBullet(float time)
 void GameObjHero::GetRect( Rect &rect )
 {
 	Point position = getPosition();
+	Point anchor = getAnchorPoint();
 	Size size = getContentSize();
-	rect = Rect( position.x-size.width, position.y-size.height, size.width, size.height );
-}
-
-void GameObjHero::OnEnter()
-{
-	Sprite::onEnter();
-
-}
-
-void GameObjHero::OnExit()
-{
-
+	rect = Rect( position.x-size.width*anchor.x, position.y-size.height*anchor.y, size.width, size.height );
 }
 
 bool GameObjHero::init()
@@ -50,7 +40,6 @@ bool GameObjHero::init()
 	Sprite::init();
 
 	setContentSize( CCSizeMake(85,90));
-	//CCDirector::sharedDirector()->getTouchDispatcher()->addT
 
 	//ÊÂ¼þ¼àÌý
 	auto listener = EventListenerTouchOneByOne::create();
@@ -114,13 +103,16 @@ bool GameObjHero::init()
 
 	m_is_control = false;
 
-	schedule( schedule_selector( GameObjHero::ReleaseBullet ), 1.0f );
-
-
-
-
-
 	return true;
+}
+
+void GameObjHero::addChild(Node *child)
+{
+	Size adjust_point = getContentSize();
+	Point old_point = child->getPosition();
+
+	child->setPosition( old_point.x + adjust_point.width/2, old_point.y + adjust_point.height/2 );
+	Node::addChild( child );
 }
 
 bool GameObjHero::ContainsTouchLocation(Touch *touch)
@@ -131,8 +123,6 @@ bool GameObjHero::ContainsTouchLocation(Touch *touch)
 	GetRect( rect );
 
 	return rect.containsPoint( touchPoint );
-
-	return true;
 }
 
 bool GameObjHero::onTouchBegan(Touch *touch, Event *event)
@@ -183,14 +173,4 @@ void GameObjHero::onTouchEnded(Touch *touch, Event *event)
 
 	m_left_hand->setFlippedY( false );
 	m_right_hand->setFlippedY( false );
-}
-
-void GameObjHero::touchDelegateRetain()
-{
-
-}
-
-void GameObjHero::touchDelegateRelease()
-{
-
 }

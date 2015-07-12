@@ -24,6 +24,7 @@
     <ClCompile Include="GameHeroBullet.cpp" />
     <ClCompile Include="GameEnemyBullet.cpp" />
     <ClCompile Include="GameMark.cpp" />
+    <ClCompile Include="GameMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -38,6 +39,7 @@
     <ClInclude Include="GameHeroBullet.h" />
     <ClInclude Include="GameEnemyBullet.h" />
     <ClInclude Include="GameMark.h" />
+    <ClInclude Include="GameMain.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

@@ -14,13 +14,17 @@ public:
 
 public:
 	virtual bool init();
+	virtual void addChild( Node *child );
 
 public:
 	void ReleaseBullet( float time );
 	void Die();
+	void SetDie();
 	void ReStart();
 	void MoveStart();
-
+	bool IsLife();
+	void SetLife( bool life );
+	void GetRect( Rect &rect );
 private:
 	Sprite *m_body;
 	Sprite *m_boom;

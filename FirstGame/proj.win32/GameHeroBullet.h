@@ -15,9 +15,11 @@ public:
 	void SetVisible();
 	void SetNotVisible();
 	bool GetVisible();
+	void GetRect( Rect &rect );
 
 public:
 	virtual bool init();
+	virtual void addChild( Node *child );
 
 private:
 	bool m_is_visible;

@@ -4,6 +4,7 @@
 #include "proj.win32/GameHeroBullet.h"
 #include "proj.win32/GameEnemyBullet.h"
 #include "proj.win32/GameMark.h"
+#include "proj.win32/GameMain.h"
 
 USING_NS_CC;
 
@@ -51,7 +52,7 @@ bool HelloWorld::init()
     // create menu, it's an autorelease object
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
-  //  this->addChild(menu, 1);
+    this->addChild(menu, 1);
 
     /////////////////////////////
     // 3. add your codes below...
@@ -66,7 +67,7 @@ bool HelloWorld::init()
                             origin.y + visibleSize.height - label->getContentSize().height));
 
     // add the label as a child to this layer
-   // this->addChild(label, 1);
+   this->addChild(label, 1);
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -76,7 +77,7 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-
+	/*
 	auto hero = GameObjHero::create();
 	
 	hero->setPosition( Vec2( visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y ) );
@@ -101,7 +102,12 @@ bool HelloWorld::init()
 
 	auto mark = GameMark::create();
 	mark->setPosition( origin.x + mark->getContentSize().width/2 , visibleSize.height );
-	addChild( mark );
+	mark->AddNumber( 1230 );
+	addChild( mark );*/
+
+	auto gameMain = GameMain::create();
+	addChild( gameMain );
+
 
     
     return true;

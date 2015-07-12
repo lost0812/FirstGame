@@ -30,11 +30,19 @@ void GameMark::AddNumber(int score)
 
 	int temp_score = m_score;
 
-	for( int i = 0; i < 5; i++ )
+	for( int i = 4; i >= 0; i-- )
 	{
-		((Sprite *)(m_array_score->objectAtIndex(i)))->setTextureRect( Rect( 4+15*(temp_score%10), 0, 15, 30 ) );
+		m_array_score.at(i)->setTextureRect( Rect( 4+11*(temp_score%10), 0, 15, 30 ) );
 		temp_score /= 10;
 	}
+}
+
+void GameMark::GetRect(Rect &rect)
+{
+	Point position = getPosition();
+	Point anchor = getAnchorPoint();
+	Size size = getContentSize();
+	rect = Rect( position.x-size.width*anchor.x, position.y-size.height*anchor.y, size.width, size.height );
 }
 
 bool GameMark::init()
@@ -42,23 +50,21 @@ bool GameMark::init()
 	Sprite::init();
 
 	//Size size = Director::sharedDirector()->getWinSize();
-	setContentSize( Size( 105, 30 ) );
+	setContentSize( Size( 110, 30 ) );
 
 	Sprite *title = Sprite::create( "score.png" );
-	int width = title->getContentSize().width;
-	setPosition( title->getContentSize().width/2,0 );
+	title->setPosition( -27.5, 0 );
 	addChild( title );
 
 
-	m_array_score = Array::create();
 	Sprite *number;
 	for( int i = 0; i < 5; i++ )
 	{
 		number = Sprite::create( "shu.png" ); 
-		number->setTextureRect( CCRectMake( 4, 0, 12, 30) );
-		number->setPosition( 55 + 6 + i * 12, 0 );
+		number->setTextureRect( CCRectMake( 4, 0, 11, 30) );
+		number->setPosition( i * 11, 0 );
 
-		m_array_score->addObject( number );
+		m_array_score.pushBack( number );
 		addChild( number );
 	} 
 	m_score = 0;
@@ -66,6 +72,14 @@ bool GameMark::init()
 	return true;
 }
 
+void GameMark::addChild(Node *child)
+{
+	Size adjust_point = getContentSize();
+	Point old_point = child->getPosition();
+
+	child->setPosition( old_point.x + adjust_point.width/2, old_point.y + adjust_point.height/2 );
+	Node::addChild( child );
+}
 
 
 

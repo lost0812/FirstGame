@@ -14,12 +14,14 @@ public:
 	~GameMark(void);
 public:
 	void AddNumber( int score );
+	void GetRect( Rect &rect );
 
 public:
 	virtual bool init();
+	virtual void addChild( Node *child );
 
 private:
 	int m_score;
-	Array *m_array_score;
+	Vector<Sprite *> m_array_score;
 };
 
