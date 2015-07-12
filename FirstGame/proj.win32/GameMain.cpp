@@ -1,5 +1,5 @@
 #include "GameMain.h"
-
+#include "GameMenu.h"
 
 
 GameMain * GameMain::create()
@@ -160,9 +160,17 @@ void GameMain::update(float delta)
 	}
 }
 
+Scene * GameMain::CreateScene()
+{
+	Scene *scene = Scene::create();
+	scene->addChild( GameMain::create() );
+	return scene;
+}
+
 void GameMain::menuBackCallBack(Ref *ref)
 {
-
+	Director::sharedDirector()->setDepthTest(true);
+	Director::sharedDirector()->replaceScene( TransitionPageTurn::create(1.0f, GameMenu::CreateScene(),true));
 }
 
 bool GameMain::IsCollion(Rect &rect1, Rect &rect2)

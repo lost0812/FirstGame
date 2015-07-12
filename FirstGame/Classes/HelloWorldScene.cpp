@@ -108,7 +108,6 @@ bool HelloWorld::init()
 	auto gameMain = GameMain::create();
 	addChild( gameMain );
 
-
     
     return true;
 }

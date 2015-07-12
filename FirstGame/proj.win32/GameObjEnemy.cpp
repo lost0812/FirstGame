@@ -65,11 +65,6 @@ void GameObjEnemy::addChild(Node *child)
 	Node::addChild( child );
 }
 
-void GameObjEnemy::ReleaseBullet(float time)
-{
-
-}
-
 void GameObjEnemy::Die()
 {
 	m_is_life = false;
@@ -158,7 +153,6 @@ void GameObjEnemy::MoveStart()
 		break;
 	}
 
-	schedule( schedule_selector( GameObjEnemy::ReleaseBullet ), 1.2f );
 }
 
 bool GameObjEnemy::IsLife()

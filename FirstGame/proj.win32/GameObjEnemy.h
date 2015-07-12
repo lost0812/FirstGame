@@ -17,7 +17,6 @@ public:
 	virtual void addChild( Node *child );
 
 public:
-	void ReleaseBullet( float time );
 	void Die();
 	void SetDie();
 	void ReStart();

@@ -14,6 +14,7 @@ class GameMain : public Layer
 {
 public:
 	static GameMain *create();
+	static Scene *CreateScene( );
 public:
 	GameMain(void);
 	~GameMain(void);

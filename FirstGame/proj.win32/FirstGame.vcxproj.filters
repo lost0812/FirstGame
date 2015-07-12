@@ -10,6 +10,15 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Game">
+      <UniqueIdentifier>{375c34a7-670a-4db0-9405-7c7d449ee5d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Sprite">
+      <UniqueIdentifier>{8c495412-4bc7-4c5c-9299-d3e4711a8a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Main">
+      <UniqueIdentifier>{f3ad4931-0b32-4c2f-b867-a3652434a384}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -17,14 +26,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
-    <ClCompile Include="GameObjHero.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>src\Game</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjEnemy.cpp" />
-    <ClCompile Include="GameHeroBullet.cpp" />
-    <ClCompile Include="GameEnemyBullet.cpp" />
-    <ClCompile Include="GameMark.cpp" />
-    <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameEnemyBullet.cpp">
+      <Filter>src\Game\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameHeroBullet.cpp">
+      <Filter>src\Game\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMark.cpp">
+      <Filter>src\Game\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjEnemy.cpp">
+      <Filter>src\Game\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjHero.cpp">
+      <Filter>src\Game\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>src\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -32,14 +54,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
-    <ClInclude Include="GameObjHero.h">
-      <Filter>src</Filter>
+    <ClInclude Include="GameMain.h">
+      <Filter>src\Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjEnemy.h" />
-    <ClInclude Include="GameHeroBullet.h" />
-    <ClInclude Include="GameEnemyBullet.h" />
-    <ClInclude Include="GameMark.h" />
-    <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameEnemyBullet.h">
+      <Filter>src\Game\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHeroBullet.h">
+      <Filter>src\Game\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMark.h">
+      <Filter>src\Game\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjEnemy.h">
+      <Filter>src\Game\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjHero.h">
+      <Filter>src\Game\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>src\Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
